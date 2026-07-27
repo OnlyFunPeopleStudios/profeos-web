@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Historial de cambios de ProfeOS." />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <title>Historial de cambios | ProfeOS</title>
+    <style>
+      .changelog-hero {
+        padding: 150px 0 60px;
+        text-align: center;
+        background: linear-gradient(160deg, #fff 0%, #effbf8 100%);
+      }
+      .dark .changelog-hero { background: linear-gradient(160deg, var(--dm-bg) 0%, var(--dm-surface) 100%); }
+      .changelog-hero h1 { font-size: 36px; font-weight: 800; margin: 0 0 8px; }
+      .changelog-hero .subtitle { font-size: 15px; color: var(--muted); margin: 0; }
+      .changelog-section { max-width: 720px; margin: 0 auto; padding: 48px 24px 80px; }
+      .version-block { margin-bottom: 56px; }
+      .version-block:last-child { margin-bottom: 0; }
+      .version-header {
+        display: flex; align-items: baseline; gap: 12px;
+        margin-bottom: 20px; padding-bottom: 12px;
+        border-bottom: 2px solid var(--mint);
+      }
+      .version-tag {
+        display: inline-block; padding: 4px 12px; border-radius: 6px;
+        background: var(--mint); color: #093a31; font-size: 14px; font-weight: 700;
+        letter-spacing: 0.02em; white-space: nowrap;
+      }
+      .version-date { font-size: 13px; color: var(--muted); }
+      .changelog-list { list-style: none; padding: 0; margin: 0; }
+      .changelog-list li {
+        position: relative; padding: 8px 0 8px 24px;
+        font-size: 15px; line-height: 1.6; color: var(--text);
+      }
+      .changelog-list li::before {
+        content: ''; position: absolute; left: 4px; top: 16px;
+        width: 8px; height: 8px; border-radius: 50%;
+        background: var(--mint); opacity: 0.6;
+      }
+      .tag {
+        display: inline-block; padding: 1px 7px; border-radius: 4px;
+        font-size: 11px; font-weight: 600; text-transform: uppercase;
+        letter-spacing: 0.04em; margin-right: 6px; vertical-align: middle;
+      }
+      .tag-feat { background: #dbeafe; color: #1e40af; }
+      .tag-fix { background: #fef3c7; color: #92400e; }
+      .tag-web { background: #ede9fe; color: #5b21b6; }
+      .dark .tag-feat { background: #1e3a5f; color: #93c5fd; }
+      .dark .tag-fix { background: #451a03; color: #fbbf24; }
+      .dark .tag-web { background: #2e1065; color: #c4b5fd; }
+    </style>
+  </head>
+  <body>
+    <header class="site-header is-scrolled">
+      <nav class="nav container">
+        <a class="brand" href="../index.html" aria-label="ProfeOS, inicio">
+          <svg class="brand-mark" viewBox="0 0 40 48" aria-hidden="true"><path d="M8 42V14a12 12 0 0 1 24 0c0 6-4 11-10 12L8 42Z"/><path d="M14 39V15a6 6 0 0 1 12 0c0 3.3-2.7 6-6 6h-6"/></svg>
+          <span>Profe<span>OS</span></span>
+        </a>
+        <div class="nav-links">
+          <a href="../index.html">Inicio</a>
+          <a href="../download.html">Descargar</a>
+          <a href="../privacy/">Privacidad</a>
+          <a href="../terms/">Términos</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="changelog-hero">
+        <h1>Historial de cambios</h1>
+        <p class="subtitle">Cada versión de ProfeOS, de la primera a la última.</p>
+      </section>
+
+      <section class="changelog-section">
+
+        <!-- v0.6.9 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.6.9</span>
+            <span class="version-date">26 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Nuevo wizard de importación: Tipo → Método → Archivo/Pegar → Vista Previa → Importar.</li>
+            <li><span class="tag tag-feat">Feat</span> Pegar desde portapapeles — copiar datos desde Excel/Calc/Sheets y pegar directamente en la app (nuevo método de importación).</li>
+            <li><span class="tag tag-feat">Feat</span> Detección de tabla múltiple — detecta automáticamente si el archivo contiene varias tablas y permite seleccionar cuál importar.</li>
+            <li><span class="tag tag-feat">Feat</span> Detección de codificación CSV — intenta UTF-8, BOM, allowMalformed, Windows-1252, ISO-8859-1 automáticamente.</li>
+            <li><span class="tag tag-feat">Feat</span> Celdas combinadas en Excel — expansión heurística para nombres de mes (ej: MARZO) propagados a columnas de días.</li>
+            <li><span class="tag tag-fix">Fix</span> Crash de PDF corregido — parsers envueltos en try/catch, nunca crashean.</li>
+            <li><span class="tag tag-fix">Fix</span> Backup de Google Drive — chequeo de conectividad antes de signIn con mensajes de error reales.</li>
+            <li><span class="tag tag-fix">Fix</span> Nombre del launcher Android corregido — "profeos" → "ProfeOS".</li>
+            <li><span class="tag tag-fix">Fix</span> Permisos INTERNET y ACCESS_NETWORK_STATE agregados al manifest principal.</li>
+            <li><span class="tag tag-feat">Feat</span> Selector de tipo de importación — elegir entre Estudiantes, Asistencia, Calificaciones o Trabajo Diario.</li>
+            <li><span class="tag tag-feat">Feat</span> Selección de método — Paste (recomendado) vs Importar archivo.</li>
+            <li><span class="tag tag-feat">Feat</span> Detección de separadores — tab, punto y coma, coma o 2+ espacios automáticamente.</li>
+          </ul>
+        </article>
+
+        <!-- v0.6.8 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.6.8</span>
+            <span class="version-date">26 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> PDF TeacherSheetImporter reescrito — detección de grilla con clustering de posiciones X, parsing basado en matriz.</li>
+            <li><span class="tag tag-feat">Feat</span> Celdas combinadas en Excel — expansión heurística para nombres de mes propagados a columnas de días.</li>
+            <li><span class="tag tag-fix">Fix</span> Crash de PDF corregido — parsers envueltos en try/catch, devuelve resultado seguro en lugar de fallar.</li>
+            <li><span class="tag tag-fix">Fix</span> Importación de trabajo diario realmente inserta registros (antes era un stub vacío).</li>
+            <li><span class="tag tag-fix">Fix</span> ColumnMappingStep ahora muestra UI real con dropdowns para mapeo de columnas.</li>
+            <li><span class="tag tag-feat">Feat</span> Detección de calificaciones A-E y CP/NC en detección inteligente.</li>
+          </ul>
+        </article>
+
+        <!-- v0.6.7 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.6.7</span>
+            <span class="version-date">26 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Google Sign-In en Windows — usa flutter_web_auth_2 con servidor local para OAuth en desktop.</li>
+            <li><span class="tag tag-feat">Feat</span> Barra de progreso en tiempo real durante importación — muestra progreso por cada fila procesada.</li>
+            <li><span class="tag tag-feat">Feat</span> TeacherSheetImporter — nuevo parser para planillas de docentes con formato de grilla.</li>
+            <li><span class="tag tag-fix">Fix</span> Callback scheme corregido en auth_repository.dart para desktop.</li>
+            <li><span class="tag tag-fix">Fix</span> detectSessionInUri deshabilitado para desktop en supabase_service.dart.</li>
+          </ul>
+        </article>
+
+        <!-- v0.6.6 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.6.6</span>
+            <span class="version-date">26 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-fix">Fix</span> Importación de trabajo diario ahora realmente inserta registros (antes era un stub vacío).</li>
+            <li><span class="tag tag-fix">Fix</span> ColumnMappingStep ahora muestra UI real con dropdowns para mapeo de columnas.</li>
+            <li><span class="tag tag-feat">Feat</span> Detección de calificaciones A-E y CP/NC en detección inteligente.</li>
+            <li><span class="tag tag-feat">Feat</span> Selector de tipo de reimportación — elegir entre Estudiantes, Asistencia, Calificaciones o Trabajo Diario.</li>
+          </ul>
+        </article>
+
+        <!-- v0.6.5 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.6.5</span>
+            <span class="version-date">26 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Módulo de Importación de Datos — importar alumnos, asistencias, evaluaciones y trabajo diario desde archivos Excel, CSV o PDF.</li>
+            <li><span class="tag tag-feat">Feat</span> Wizard de 4 pasos: seleccionar archivo, detección inteligente de columnas, mapeo e importación.</li>
+            <li><span class="tag tag-feat">Feat</span> Detección inteligente de columnas: reconoce automáticamente asistencia, notas, fechas y estudiantes.</li>
+            <li><span class="tag tag-feat">Feat</span> Tipos de evaluación personalizados — crear tipos propios además de los fijos (1-10, 1-100, A-E, CP/NC).</li>
+            <li><span class="tag tag-feat">Feat</span> Plantillas guardadas para reutilizar configuración de importación.</li>
+            <li><span class="tag tag-feat">Feat</span> Estrategias de duplicado: saltar, sobreescribir o crear variante.</li>
+            <li><span class="tag tag-feat">Feat</span> Auto-creación de clases si no existen al importar.</li>
+          </ul>
+        </article>
+
+        <!-- v0.6.0 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.6.0</span>
+            <span class="version-date">25 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Calendario dividido en pestañas "Escolar" y "Laboral" — eventos institucionales y eventos personales del docente separados.</li>
+            <li><span class="tag tag-feat">Feat</span> Calendario Laboral — registrar jornadas, capacitaciones, asuetos y eventos personales independientes de las instituciones.</li>
+            <li><span class="tag tag-feat">Feat</span> Sistema de Licencias — registrar licencias, vacaciones, enfermería y ausencias con fechas, motivo y opcionalmente asociadas a un colegio.</li>
+            <li><span class="tag tag-feat">Feat</span> Banner de licencia activa en la pantalla HOY y en el calendario laboral cuando hay una licencia vigente.</li>
+            <li><span class="tag tag-feat">Feat</span> Botón "Instagram" en la pantalla Acerca de — enlace directo a @profeos.app.</li>
+            <li><span class="tag tag-feat">Feat</span> Color personalizado para eventos del calendario (nuevo campo colorHex).</li>
+            <li><span class="tag tag-fix">Fix</span> Backups ahora incluyen las tablas de licencias y eventos laborales.</li>
+          </ul>
+        </article>
+
+        <!-- v0.5.2 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.5.2</span>
+            <span class="version-date">25 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Observaciones rápidas seleccionables — los botones ahora muestran estado visual (seleccionado/deseleccionado) con color y check.</li>
+            <li><span class="tag tag-feat">Feat</span> Selección múltiple de observaciones — el docente puede seleccionar varias observaciones rápidas y guardarlas todas de una con "Agregar observación".</li>
+            <li><span class="tag tag-feat">Feat</span> Botón "Cancelar" — limpia todas las selecciones y el texto escrito sin guardar nada.</li>
+            <li><span class="tag tag-feat">Feat</span> Eliminar observaciones — cada observación registrada tiene un botón de eliminación con confirmación.</li>
+            <li><span class="tag tag-feat">Feat</span> Migración automática al sistema de módulos — al actualizar, los horarios existentes se configuran automáticamente según las horas semanales del curso, y se crean registros de asistencia por módulo para todo el historial existente.</li>
+            <li><span class="tag tag-feat">Feat</span> Campo "modulo_numero" en observaciones de Trabajo Diario — preparado para asociar observaciones a módulos específicos en versiones futuras.</li>
+            <li><span class="tag tag-fix">Fix</span> Feedback visual al guardar — Snackbar de confirmación "Observación guardada correctamente" después de cada guardado exitoso.</li>
+          </ul>
+        </article>
+
+        <!-- v0.5.1 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.5.1</span>
+            <span class="version-date">25 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Eliminar curso desde su pantalla de detalle (menú en AppBar + confirmación + cascade de todos los datos dependientes).</li>
+            <li><span class="tag tag-feat">Feat</span> Eliminar colegio/institución desde la lista de Colegios (menú contextual + confirmación + cascade completo de cursos, horarios, estudiantes, asistencias y evaluaciones).</li>
+            <li><span class="tag tag-fix">Fix</span> Acciones "Llegó tarde" y "Se retiró" ahora aparecen siempre en Trabajo Diario — si el curso tiene 1 solo módulo se aplican directamente sin selector.</li>
+          </ul>
+        </article>
+
+        <!-- v0.5.0 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.5.0</span>
+            <span class="version-date">25 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Sistema de asistencia por módulos — cada bloque horario puede tener 1 a 4 módulos, y la asistencia se registra por módulo automáticamente.</li>
+            <li><span class="tag tag-feat">Feat</span> Acciones "Llegó tarde" y "Se retiró" en Trabajo Diario — con selector de módulo que actualiza la asistencia sin volver a pasar lista.</li>
+            <li><span class="tag tag-feat">Feat</span> Asistencia simplificada a solo Presente / Ausente — los estados tarde y retiro se aplican automáticamente desde Trabajo Diario.</li>
+            <li><span class="tag tag-feat">Feat</span> Indicador visual de módulos (M1 M2 M3) por estudiante en la pantalla de Asistencia.</li>
+            <li><span class="tag tag-feat">Feat</span> Campo "Módulos por clase" al crear bloques de horario (1, 2, 3 o 4 módulos).</li>
+            <li><span class="tag tag-fix">Fix</span> Texto desbordado en la tarjeta "Próxima Clase" de la pantalla HOY — textos largos ahora saltan de línea correctamente.</li>
+          </ul>
+        </article>
+
+        <!-- v0.4.0 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.4.0</span>
+            <span class="version-date">22 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-fix">Fix</span> Clase <code>PathUtils</code> restaurada — desactivamos la minificación R8 que eliminaba clases nativas necesarias en runtime.</li>
+            <li><span class="tag tag-fix">Fix</span> Sesión de Google Drive: singleton de <code>GoogleSignIn</code> + meta-data <code>default_web_client_id</code> en AndroidManifest para que <code>signInSilently()</code> funcione en Android.</li>
+            <li><span class="tag tag-fix">Fix</span> Eliminado <code>open_file</code> (deprecated, v1 embedding). Exportaciones ahora usan <code>url_launcher</code> + FileProvider propio.</li>
+            <li><span class="tag tag-web">Web</span> Link de descarga actualizado en download page.</li>
+          </ul>
+        </article>
+
+        <!-- v0.3.2 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.3.2</span>
+            <span class="version-date">21 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Selector de ciclo lectivo en la pantalla HOY (chickeable, con reset al ciclo activo).</li>
+            <li><span class="tag tag-feat">Feat</span> Eliminar estudiante desde su pantalla de detalle (botón en AppBar + confirmación).</li>
+            <li><span class="tag tag-feat">Feat</span> Eliminar ciclo lectivo (PopupMenuButton en la tile + confirmación).</li>
+            <li><span class="tag tag-feat">Feat</span> Toggle manual modo oscuro / claro (ícono sol/luna en HOY, persiste en la sesión).</li>
+            <li><span class="tag tag-fix">Fix</span> Suma de horas ahora filtra por el ciclo lectivo efectivo (nuevo método <code>listarPorCiclo()</code> con JOIN en repositorio).</li>
+            <li><span class="tag tag-fix">Fix</span> Pinned <code>path_provider_android: 2.3.0</code> para evitar crash JNI.</li>
+            <li><span class="tag tag-web">Web</span> Download page: eliminado "Abrir en navegador", solo botón "Descargar APK".</li>
+          </ul>
+        </article>
+
+        <!-- v0.3.1 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.3.1</span>
+            <span class="version-date">19 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-fix">Fix</span> Google Drive backup: HTTP 400 al crear backup — query URL-encoded + multipart fix.</li>
+            <li><span class="tag tag-fix">Fix</span> Google Drive auth: Web Client ID desde .env, sin Firebase ni <code>google-services.json</code>.</li>
+            <li><span class="tag tag-fix">Fix</span> Error handling visible en pantalla + logs completos en Logcat para debug.</li>
+          </ul>
+        </article>
+
+        <!-- v0.3.0 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.3.0</span>
+            <span class="version-date">17 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Google Drive backup/restore completo — subir, listar, descargar y eliminar backups desde la nube.</li>
+            <li><span class="tag tag-feat">Feat</span> 12 tablas Supabase + RLS + triggers para sync en la nube.</li>
+            <li><span class="tag tag-feat">Feat</span> Flujo completo de Google OAuth con PKCE, deep link handler y sesión persistente.</li>
+            <li><span class="tag tag-fix">Fix</span> <code>WidgetsBindingObserver</code> para recuperar sesión al volver a la app.</li>
+            <li><span class="tag tag-fix">Fix</span> <code>ref.listen</code> en auth para manejar correctamente el stream de estado.</li>
+            <li><span class="tag tag-web">Web</span> Página de descarga con link a Google Drive.</li>
+          </ul>
+        </article>
+
+        <!-- v0.2.2 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.2.2</span>
+            <span class="version-date">14 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Debug completo del flujo Google OAuth — fallback deep link handler.</li>
+            <li><span class="tag tag-fix">Fix</span> Manejo de errores en login visible en pantalla.</li>
+            <li><span class="tag tag-fix">Fix</span> Recuperación de sesión al reanudar la app.</li>
+          </ul>
+        </article>
+
+        <!-- v0.2.1 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.2.1</span>
+            <span class="version-date">12 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Date picker en historial de clases.</li>
+            <li><span class="tag tag-feat">Feat</span> Localización completa al español con <code>flutter_localizations</code>.</li>
+          </ul>
+        </article>
+
+        <!-- v0.2.0 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.2.0</span>
+            <span class="version-date">11 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Sincronización Supabase bidireccional — subida y bajada de datos.</li>
+            <li><span class="tag tag-feat">Feat</span> Historial de clases con navegación por fecha.</li>
+            <li><span class="tag tag-feat">Feat</span> Web support — imports condicionales drift para web/nativo.</li>
+            <li><span class="tag tag-fix">Fix</span> Error handling visible en web — pantalla de debug.</li>
+            <li><span class="tag tag-fix">Fix</span> Auth redirect condicional para web (<code>kIsWeb</code>).</li>
+          </ul>
+        </article>
+
+        <!-- v0.1.4 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.1.4</span>
+            <span class="version-date">8 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Selector de período en Trabajo Diario.</li>
+            <li><span class="tag tag-fix">Fix</span> Navegación corregida entre pantallas.</li>
+            <li><span class="tag tag-fix">Fix</span> Manejo de errores en Trabajo Diario.</li>
+          </ul>
+        </article>
+
+        <!-- v0.1.3 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.1.3</span>
+            <span class="version-date">7 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Gráfico de torta (Syncfusion PieChart) en resumen de estudiante.</li>
+            <li><span class="tag tag-feat">Feat</span> Campo de observaciones en Trabajo Diario.</li>
+          </ul>
+        </article>
+
+        <!-- v0.1.2 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.1.2</span>
+            <span class="version-date">6 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-fix">Fix</span> Texto de botones que se cortaba — ajuste de wrapping en toda la app.</li>
+          </ul>
+        </article>
+
+        <!-- v0.1.1 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.1.1</span>
+            <span class="version-date">5 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Edición de eventos del calendario.</li>
+            <li><span class="tag tag-feat">Feat</span> Comentarios de observaciones por estudiante.</li>
+            <li><span class="tag tag-feat">Feat</span> Vista general del estudiante con estadísticas.</li>
+            <li><span class="tag tag-fix">Fix</span> Overflows corregidos en múltiples pantallas.</li>
+          </ul>
+        </article>
+
+        <!-- v0.1.0 -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.1.0</span>
+            <span class="version-date">3 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Pantalla Mate y Correcciones — vista diaria del docente.</li>
+            <li><span class="tag tag-feat">Feat</span> Integración Google OAuth (login con cuenta de Google).</li>
+            <li><span class="tag tag-feat">Feat</span> Planillas oficiales + exportación Excel/PDF.</li>
+            <li><span class="tag tag-feat">Feat</span> Selección manual de estudiantes en grupos.</li>
+            <li><span class="tag tag-fix">Fix</span> Overflows en bottom sheets corregidos.</li>
+            <li><span class="tag tag-web">Web</span> Página oficial de descarga APK + botón en hero y nav.</li>
+            <li><span class="tag tag-web">Web</span> Políticas de privacidad (Ley 25.326), condiciones del servicio y eliminación de datos.</li>
+          </ul>
+        </article>
+
+        <!-- v0.0.x -->
+        <article class="version-block">
+          <div class="version-header">
+            <span class="version-tag">v0.0.x</span>
+            <span class="version-date">1 — 2 de julio de 2026</span>
+          </div>
+          <ul class="changelog-list">
+            <li><span class="tag tag-feat">Feat</span> Sprint 1: pantalla HOY, calendario y perfil.</li>
+            <li><span class="tag tag-feat">Feat</span> Base de datos local con Drift (11 tablas offline-first).</li>
+            <li><span class="tag tag-feat">Feat</span> Navegación con GoRouter + estado con Riverpod.</li>
+            <li><span class="tag tag-feat">Feat</span> Múltiples instituciones, cursos y gestión de estudiantes.</li>
+            <li><span class="tag tag-web">Web</span> Sitio web oficial de ProfeOS — hero, funciones, filosofía, roadmap y formulario beta.</li>
+          </ul>
+        </article>
+
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>
+          <a class="brand" href="../index.html"><svg class="brand-mark" viewBox="0 0 40 48" aria-hidden="true"><path d="M8 42V14a12 12 0 0 1 24 0c0 6-4 11-10 12L8 42Z"/><path d="M14 39V15a6 6 0 0 1 12 0c0 3.3-2.7 6-6 6h-6"/></svg><span>Profe<span>OS</span></span></a>
+          <p>Menos administración. Más enseñanza.</p>
+        </div>
+        <div class="footer-links">
+          <a href="../download.html">Descargar</a>
+          <a href="../privacy/">Política de privacidad</a>
+          <a href="../terms/">Condiciones del servicio</a>
+          <a href="../delete-account.html">Eliminar cuenta</a>
+          <a href="mailto:hola@OnlyFunPeopleStudios.github.io/profeos-web">Contacto</a>
+          <a href="https://www.instagram.com/profeos.app/" target="_blank" rel="noopener noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>&copy; <span data-year></span> ProfeOS</span>
+        <span>Hecho en Argentina</span>
+      </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
